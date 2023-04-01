@@ -10,6 +10,7 @@ import type Experience from "../Experience";
 import SunLight from "./SunLight";
 import Ground from "./Ground";
 import Girl from "./Girl";
+import Tree from "./Tree";
 
 export default class World extends kokomi.Component {
   declare base: Experience;
@@ -18,6 +19,7 @@ export default class World extends kokomi.Component {
   sunLight!: SunLight;
   ground!: Ground;
   girl!: Girl;
+  tree!: Tree;
   constructor(base: Experience) {
     super(base);
 
@@ -64,6 +66,10 @@ export default class World extends kokomi.Component {
       stage.add(girl.model);
 
       this.girl.idle();
+
+      const tree = new Tree(this.base);
+      this.tree = tree;
+      tree.addExisting();
 
       this.emit("ready");
     });

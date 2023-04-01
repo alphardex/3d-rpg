@@ -67,6 +67,8 @@ class Girl extends kokomi.Component {
       mass: 1,
       shape,
       position: new CANNON.Vec3(0, 0, 0),
+      angularDamping: 1,
+      linearDamping: 0.99,
     });
     this.body = body;
 

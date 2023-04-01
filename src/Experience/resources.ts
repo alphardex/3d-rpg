@@ -36,4 +36,9 @@ export const resources: kokomi.ResoureList = [
     type: "fbxModel",
     path: "models/girl/Jumping.fbx",
   },
+  {
+    name: "tree",
+    type: "gltfModel",
+    path: "models/tree_for_games.glb",
+  },
 ];
