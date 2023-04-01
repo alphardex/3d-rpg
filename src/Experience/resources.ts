@@ -4,7 +4,7 @@ export const resources: kokomi.ResoureList = [
   {
     name: "skybox",
     type: "texture",
-    path: "skybox/FS002_Day.png",
+    path: "skybox/FS002_Night.png",
   },
   {
     name: "grassDiffuse",

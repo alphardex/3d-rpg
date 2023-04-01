@@ -4,6 +4,8 @@ import * as CANNON from "cannon-es";
 
 import type Experience from "../Experience";
 
+import config from "../../config";
+
 class Ground extends kokomi.Component {
   declare base: Experience;
   mesh: THREE.Mesh;
@@ -23,10 +25,10 @@ class Ground extends kokomi.Component {
     ] as THREE.Texture;
     grassDiffuseTex.wrapS = grassDiffuseTex.wrapT = THREE.RepeatWrapping;
     grassDiffuseTex.repeat.copy(size);
-    grassDiffuseTex.encoding = THREE.sRGBEncoding;
+    grassDiffuseTex.encoding = config.encoding;
     grassNormalTex.wrapS = grassNormalTex.wrapT = THREE.RepeatWrapping;
     grassNormalTex.repeat.copy(size);
-    grassNormalTex.encoding = THREE.sRGBEncoding;
+    grassNormalTex.encoding = config.encoding;
 
     const material = new THREE.MeshStandardMaterial({
       map: grassDiffuseTex,

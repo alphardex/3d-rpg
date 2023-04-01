@@ -23,6 +23,7 @@ export default class Experience extends kokomi.Base {
     this.renderer.setClearColor(0xffffff, 1);
 
     kokomi.beautifyRender(this.renderer);
+    this.renderer.toneMappingExposure = 0.5;
 
     kokomi.enableShadow(this.renderer);
 

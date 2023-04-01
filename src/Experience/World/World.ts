@@ -20,6 +20,7 @@ export default class World extends kokomi.Component {
   ground!: Ground;
   girl!: Girl;
   trees!: Tree[];
+  sparkles!: kokomi.Sparkles;
   constructor(base: Experience) {
     super(base);
 
@@ -40,11 +41,11 @@ export default class World extends kokomi.Component {
         this.base.renderer,
         this.base.assetManager?.items["skybox"]
       );
-      envMap.encoding = THREE.sRGBEncoding;
+      envMap.encoding = config.encoding;
 
       this.base.scene.background = envMap;
 
-      // this.base.scene.environment = envMap;
+      this.base.scene.environment = envMap;
 
       const stage = new kokomi.Stage(this.base, {
         intensity: 4,
@@ -82,6 +83,14 @@ export default class World extends kokomi.Component {
         return tree;
       });
       this.trees = trees;
+
+      const sparkles = new kokomi.Sparkles(this.base, {
+        scale: [10, 2, 50],
+        count: 200,
+        size: 1.5,
+      });
+      this.sparkles = sparkles;
+      sparkles.addExisting();
 
       this.emit("ready");
     });
