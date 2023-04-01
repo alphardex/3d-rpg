@@ -19,7 +19,7 @@ export default class World extends kokomi.Component {
   sunLight!: SunLight;
   ground!: Ground;
   girl!: Girl;
-  tree!: Tree;
+  trees!: Tree[];
   constructor(base: Experience) {
     super(base);
 
@@ -67,9 +67,21 @@ export default class World extends kokomi.Component {
 
       this.girl.idle();
 
-      const tree = new Tree(this.base);
-      this.tree = tree;
-      tree.addExisting();
+      const trees = [
+        { coord: new THREE.Vector2(4, -2), angle: 0 },
+        { coord: new THREE.Vector2(3, -6), angle: 0 },
+        { coord: new THREE.Vector2(7, -10), angle: 0 },
+        { coord: new THREE.Vector2(15, -16), angle: 0 },
+        { coord: new THREE.Vector2(-4, -2), angle: 180 },
+        { coord: new THREE.Vector2(-3, -6), angle: 180 },
+        { coord: new THREE.Vector2(-7, -10), angle: 180 },
+        { coord: new THREE.Vector2(-15, -16), angle: 180 },
+      ].map((item) => {
+        const tree = new Tree(this.base, item);
+        tree.addExisting();
+        return tree;
+      });
+      this.trees = trees;
 
       this.emit("ready");
     });
