@@ -4,6 +4,8 @@ import "./style.css";
 
 import Experience from "./Experience/Experience";
 
+import config from "./config";
+
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 <div id="sketch"></div>
 <div class="title-scene absolute hv-center">
@@ -38,16 +40,26 @@ loadingScreen.style.display = "none";
 
 const experience = new Experience("#sketch");
 
-btnEnter?.addEventListener("click", () => {
+const enter = () => {
   titleScene.style.display = "none";
 
   loadingScreen.style.display = "block";
 
   experience.create();
 
-  app.requestFullscreen();
+  if (config.isFullscreen) {
+    app.requestFullscreen();
+  }
 
   experience.world?.on("ready", () => {
     loadingScreen.style.display = "none";
   });
+};
+
+btnEnter?.addEventListener("click", () => {
+  enter();
 });
+
+if (config.skipTitle) {
+  enter();
+}

@@ -1,20 +1,22 @@
 import * as kokomi from "kokomi.js";
+import * as THREE from "three";
 
-import config from "../config";
+import config from "../../config";
 
 import CannonDebugger from "cannon-es-debugger";
 
 import type Experience from "../Experience";
 
 import SunLight from "./SunLight";
-import Floor from "./Floor";
+import Ground from "./Ground";
 import Girl from "./Girl";
 
 export default class World extends kokomi.Component {
   declare base: Experience;
   cannonDebugger!: typeof CannonDebugger;
+  stats!: kokomi.Stats;
   sunLight!: SunLight;
-  floor!: Floor;
+  ground!: Ground;
   girl!: Girl;
   constructor(base: Experience) {
     super(base);
@@ -27,15 +29,23 @@ export default class World extends kokomi.Component {
       );
       this.cannonDebugger = cannonDebugger;
 
+      if (config.isStatsShown) {
+        const stats = new kokomi.Stats(this.base);
+        this.stats = stats;
+      }
+
       const envMap = kokomi.getEnvmapFromHDRTexture(
         this.base.renderer,
-        this.base.assetManager?.items["env"]
+        this.base.assetManager?.items["skybox"]
       );
+      envMap.encoding = THREE.sRGBEncoding;
 
-      this.base.scene.environment = envMap;
+      this.base.scene.background = envMap;
+
+      // this.base.scene.environment = envMap;
 
       const stage = new kokomi.Stage(this.base, {
-        intensity: 5,
+        intensity: 4,
         shadow: false,
       });
       stage.addExisting();
@@ -44,9 +54,9 @@ export default class World extends kokomi.Component {
       this.sunLight = sunLight;
       sunLight.addExisting();
 
-      const floor = new Floor(this.base);
-      this.floor = floor;
-      floor.addExisting();
+      const ground = new Ground(this.base);
+      this.ground = ground;
+      ground.addExisting();
 
       const girl = new Girl(this.base);
       this.girl = girl;

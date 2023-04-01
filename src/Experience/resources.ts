@@ -2,9 +2,19 @@ import type * as kokomi from "kokomi.js";
 
 export const resources: kokomi.ResoureList = [
   {
-    name: "env",
-    type: "hdrTexture",
-    path: "hdrs/potsdamer_platz_1k.hdr",
+    name: "skybox",
+    type: "texture",
+    path: "skybox/FS002_Day.png",
+  },
+  {
+    name: "grassDiffuse",
+    type: "texture",
+    path: "textures/Texture_Grass_Diffuse.png",
+  },
+  {
+    name: "grassNormal",
+    type: "texture",
+    path: "textures/Texture_Grass_Normal.png",
   },
   {
     name: "girlIdle",
