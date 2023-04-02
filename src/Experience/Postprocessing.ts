@@ -28,6 +28,7 @@ export default class Postprocessing extends kokomi.Component {
 
     composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
 
+    // // bloom
     // const bloom = new POSTPROCESSING.BloomEffect({
     //   blendFunction: POSTPROCESSING.BlendFunction.ADD,
     //   luminanceThreshold: 0.1,
