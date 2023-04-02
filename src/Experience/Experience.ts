@@ -33,7 +33,7 @@ export default class Experience extends kokomi.Base {
 
     this.controls = new Controls(this);
 
-    this.debug = new Debug();
+    this.debug = new Debug(this);
 
     this.assetManager = null;
 

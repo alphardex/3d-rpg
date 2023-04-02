@@ -31,7 +31,7 @@ class Girl extends kokomi.Component {
     const model = new THREE.Group();
     this.model = model;
 
-    const realModel = this.base.assetManager?.items["girlIdle"];
+    const realModel = this.base.assetManager?.items["girlIdle"] as THREE.Group;
     realModel.rotation.y = -Math.PI;
     this.model.add(realModel);
 
@@ -202,7 +202,8 @@ class Girl extends kokomi.Component {
     return result;
   }
   addAction(assetName: string, name: string) {
-    const animation = this.base.assetManager?.items[assetName].animations[0];
+    const animation = (this.base.assetManager?.items[assetName] as THREE.Group)
+      .animations[0];
     const action = this.mixer.clipAction(animation);
     this.actions[name] = action;
   }

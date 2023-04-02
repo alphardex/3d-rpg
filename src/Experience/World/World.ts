@@ -3,8 +3,6 @@ import * as THREE from "three";
 
 import config from "../../config";
 
-import CannonDebugger from "cannon-es-debugger";
-
 import type Experience from "../Experience";
 
 import SunLight from "./SunLight";
@@ -14,8 +12,6 @@ import Tree from "./Tree";
 
 export default class World extends kokomi.Component {
   declare base: Experience;
-  cannonDebugger!: typeof CannonDebugger;
-  stats!: kokomi.Stats;
   sunLight!: SunLight;
   ground!: Ground;
   girl!: Girl;
@@ -25,21 +21,9 @@ export default class World extends kokomi.Component {
     super(base);
 
     this.base.assetManager?.on("ready", async () => {
-      // @ts-ignore
-      const cannonDebugger = new CannonDebugger(
-        this.base.scene,
-        this.base.physics.world
-      );
-      this.cannonDebugger = cannonDebugger;
-
-      if (config.isStatsShown) {
-        const stats = new kokomi.Stats(this.base);
-        this.stats = stats;
-      }
-
       const envMap = kokomi.getEnvmapFromHDRTexture(
         this.base.renderer,
-        this.base.assetManager?.items["skybox"]
+        this.base.assetManager?.items["skybox"] as THREE.Texture
       );
       envMap.encoding = config.encoding;
 
@@ -96,10 +80,6 @@ export default class World extends kokomi.Component {
     });
   }
   update(): void {
-    if (config.isPhysicsDebuggerShown) {
-      (this.cannonDebugger as any)?.update();
-    }
-
     this.handleGirlControl();
   }
   handleGirlControl() {
