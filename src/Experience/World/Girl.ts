@@ -24,6 +24,7 @@ class Girl extends kokomi.Component {
   targetCameraRotation: number;
   walkDirection: THREE.Vector3;
   cameraTarget: THREE.Vector3;
+  currentCameraPosition: THREE.Vector3;
   constructor(base: Experience) {
     super(base);
 
@@ -87,6 +88,7 @@ class Girl extends kokomi.Component {
     this.targetCameraRotation = 0;
     this.walkDirection = new THREE.Vector3(0, 0, 0);
     this.cameraTarget = new THREE.Vector3(0, 0, 0);
+    this.currentCameraPosition = new THREE.Vector3(0, 0, 0);
   }
   addExisting(): void {
     this.base.physics.add({ mesh: this.model, body: this.body });
@@ -172,9 +174,11 @@ class Girl extends kokomi.Component {
     return result;
   }
   updateCameraTarget() {
-    this.base.camera.position.x += this.move.x;
-    this.base.camera.position.y += this.move.y;
-    this.base.camera.position.z += this.move.z;
+    const dt = this.base.clock.deltaTime;
+    const dt2 = 1 - Math.pow(0.001, dt);
+
+    this.currentCameraPosition.lerp(this.move, dt2);
+    this.base.camera.position.add(this.currentCameraPosition);
 
     this.cameraTarget.x = this.model.position.x;
     this.cameraTarget.y = this.model.position.y + 0.2;
