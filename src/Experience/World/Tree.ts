@@ -28,7 +28,7 @@ class Tree extends kokomi.Component {
     realModel.scene.position.y = -200;
     this.model.add(realModel.scene.clone());
 
-    const modelParts = kokomi.flatModel(realModel.scene);
+    // const modelParts = kokomi.flatModel(realModel.scene);
     // kokomi.printModel(modelParts);
 
     const collider = new THREE.BoxGeometry(0.8, 4, 0.8);
