@@ -23,7 +23,6 @@ export default class Experience extends kokomi.Base {
         premultipliedAlpha: false,
         stencil: false,
         antialias: false,
-        alpha: false,
         preserveDrawingBuffer: true,
       },
     });
