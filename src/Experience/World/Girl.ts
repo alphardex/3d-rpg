@@ -113,6 +113,9 @@ class Girl extends kokomi.Component {
   get isMoving() {
     return ["walking", "running"].includes(this.state);
   }
+  get isJumping() {
+    return this.state === "jumping";
+  }
   handleMove() {
     let directionOffset = this.getDirectionOffset();
     this.directionOffset = directionOffset;

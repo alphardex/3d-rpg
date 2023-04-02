@@ -91,7 +91,7 @@ export default class World extends kokomi.Component {
         !this.base.keyboard.isRightKeyDown &&
         !this.base.keyboard.isShiftKeyDown
       ) {
-        if (this.girl.state !== "jumping") {
+        if (this.girl.isJumping) {
           this.girl.resetDirection();
           this.girl.idle();
         }
@@ -102,26 +102,10 @@ export default class World extends kokomi.Component {
         return;
       }
 
-      if (this.base.keyboard.isUpKeyDown) {
-        this.girl.isForward = true;
-      } else {
-        this.girl.isForward = false;
-      }
-      if (this.base.keyboard.isDownKeyDown) {
-        this.girl.isBackward = true;
-      } else {
-        this.girl.isBackward = false;
-      }
-      if (this.base.keyboard.isLeftKeyDown) {
-        this.girl.isLeftward = true;
-      } else {
-        this.girl.isLeftward = false;
-      }
-      if (this.base.keyboard.isRightKeyDown) {
-        this.girl.isRightward = true;
-      } else {
-        this.girl.isRightward = false;
-      }
+      this.girl.isForward = this.base.keyboard.isUpKeyDown;
+      this.girl.isBackward = this.base.keyboard.isDownKeyDown;
+      this.girl.isLeftward = this.base.keyboard.isLeftKeyDown;
+      this.girl.isRightward = this.base.keyboard.isRightKeyDown;
 
       const isMoveKeyDown =
         this.base.keyboard.isUpKeyDown ||
