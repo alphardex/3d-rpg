@@ -84,24 +84,6 @@ export default class World extends kokomi.Component {
   }
   handleGirlControl() {
     if (this.girl) {
-      if (
-        !this.base.keyboard.isUpKeyDown &&
-        !this.base.keyboard.isDownKeyDown &&
-        !this.base.keyboard.isLeftKeyDown &&
-        !this.base.keyboard.isRightKeyDown &&
-        !this.base.keyboard.isShiftKeyDown
-      ) {
-        if (this.girl.isJumping) {
-          this.girl.resetDirection();
-          this.girl.idle();
-        }
-      }
-
-      if (this.base.keyboard.isSpaceKeyDown) {
-        this.girl.jumping();
-        return;
-      }
-
       this.girl.isForward = this.base.keyboard.isUpKeyDown;
       this.girl.isBackward = this.base.keyboard.isDownKeyDown;
       this.girl.isLeftward = this.base.keyboard.isLeftKeyDown;
