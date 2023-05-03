@@ -17,11 +17,11 @@
     "postprocessing": "^6.30.2",
     "realism-effects": "^1.0.19",
     "three": "^0.151.2",
-    "tweakpane": "^3.1.7"
+    "tweakpane": "^3.1.9"
   },
   "devDependencies": {
     "@types/three": "^0.151.0",
-    "typescript": "^5.0.3",
-    "vite": "^4.2.1"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.4"
   }
 }
