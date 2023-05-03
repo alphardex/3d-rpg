@@ -5,7 +5,7 @@ const config = {
   isFullscreen: false,
   encoding: THREE.sRGBEncoding,
   // encoding: THREE.LinearEncoding,
-  usePostprocessing: true,
+  usePostprocessing: false,
   debug: {
     physics: false,
     stats: true,
